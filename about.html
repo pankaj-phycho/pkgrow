@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - PK Grow</title>
+    <meta name="description" content="Learn about PK Grow's mission to empower creators with free, accessible tools and resources for productivity and growth.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #1E1E2F;
+            --bg-secondary: #252A3D;
+            --accent-primary: #6C5CE7;
+            --accent-secondary: #8A7CFF;
+            --text-primary: #F8F8F2;
+            --text-secondary: #B2B2C6;
+            --card-bg: #2A2F45;
+            --card-hover: #32385A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--bg-secondary);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Banner Section */
+        .banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/images/banner-about.jpg') center/cover no-repeat;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .banner h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* About Content */
+        .about-section {
+            padding: 40px 0 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--accent-secondary);
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .about-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-card h3 i {
+            font-size: 1.8rem;
+        }
+
+        .about-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .mv-card {
+            background: linear-gradient(145deg, var(--card-bg), var(--card-hover));
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .mv-card i {
+            font-size: 3rem;
+            color: var(--accent-primary);
+            margin-bottom: 20px;
+        }
+
+        .mv-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .mv-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .creator-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .creator-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .creator-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .creator-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--accent-primary);
+        }
+
+        .creator-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .creator-info p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-primary);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-secondary);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 35px;
+        }
+
+        .footer-logo h2 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .footer-about p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .footer-links h3, .footer-newsletter h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-secondary);
+        }
+
+        .footer-newsletter p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid #3E3E5F;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .newsletter-form button {
+            background-color: var(--accent-primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--accent-secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #3E3E5F;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            nav ul {
+                gap: 20px;
+            }
+            
+            .banner h2 {
+                font-size: 2.2rem;
+            }
+            
+            .banner p {
+                font-size: 1.1rem;
+            }
+            
+            .about-grid, .mission-vision {
+                grid-template-columns: 1fr;
+            }
+            
+            .creator-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .creator-image {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                position: relative;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-secondary);
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mv-card {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner {
+                padding: 80px 0;
+            }
+            
+            .banner h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .about-card, .mv-card, .creator-section {
+                padding: 25px 20px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="assets/images/logo.png" alt="PK Grow Logo">
+                    <h1>PK Grow</h1>
+                </div>
+                <button class="mobile-menu-btn">☰</button>
+                <nav id="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="about.html" class="active">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner Section -->
+    <section class="banner">
+        <div class="container">
+            <h2>About PK Grow</h2>
+            <p>Learn about our mission to empower creators with free, accessible tools and resources</p>
+        </div>
+    </section>
+
+    <!-- About Content Section -->
+    <main class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Story</h2>
+                <p>PK Grow was founded with a simple vision: to create tools that help people work smarter, not harder</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-content">
+                    <div class="about-card">
+                        <h3><i class="fas fa-rocket"></i> Who We Are</h3>
+                        <p>PK Grow is a passionate team of developers, designers, and content creators dedicated to building useful tools that solve real problems. We believe that technology should be accessible to everyone, regardless of their technical background or budget.</p>
+                        <p>Our platform provides a growing collection of free tools designed to help creators, entrepreneurs, and professionals streamline their workflows and enhance their productivity.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <h3><i class="fas fa-cogs"></i> What We Do</h3>
+                        <p>We develop and maintain a suite of web-based tools that cater to various needs—from SEO optimization and content creation to data analysis and productivity enhancement. Each tool is carefully crafted with user experience in mind, ensuring that even complex tasks become simple and intuitive.</p>
+                        <p>We continuously update our tools based on user feedback and technological advancements to ensure they remain relevant and effective.</p>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="PK Grow Team Collaboration">
+                </div>
+            </div>
+            
+            <div class="mission-vision">
+                <div class="mv-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Our Mission</h3>
+                    <p>Helping people access useful tools and resources easily, regardless of their technical expertise or financial resources. We believe in democratizing access to technology that can enhance productivity and creativity.</p>
+                </div>
+                
+                <div class="mv-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>Our Vision</h3>
+                    <p>To empower creators worldwide by providing free, accessible tools that simplify complex tasks and foster innovation. We envision a world where everyone has the tools they need to bring their ideas to life.</p>
+                </div>
+            </div>
+            
+            <div class="section-header">
+                <h2>Meet The Creator</h2>
+                <p>The mind behind PK Grow and our suite of productivity tools</p>
+            </div>
+            
+            <div class="creator-section">
+                <div class="creator-image">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="PK Grow Founder">
+                </div>
+                
+                <div class="creator-info">
+                    <h3>Alex Johnson</h3>
+                    <h4>Founder & Lead Developer</h4>
+                    <p>With over 10 years of experience in software development and product design, Alex founded PK Grow to bridge the gap between complex technology and everyday users. His passion for creating intuitive tools that solve real-world problems drives the vision of PK Grow.</p>
+                    <p>Alex believes that the best tools are those that feel invisible—they work so seamlessly that users can focus on their creative process rather than the tool itself.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-dev"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.png" alt="PK Grow Logo">
+                        <h2>PK Grow</h2>
+                    </div>
+                    <p>We create tools and resources to help developers and designers work more efficiently and creatively.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter to get updates on new tools and features.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 PK Grow. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('main-nav').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

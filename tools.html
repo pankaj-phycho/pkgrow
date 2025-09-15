@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools - PK Grow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #1E1E2F;
+            --bg-secondary: #252A3D;
+            --accent-primary: #6C5CE7;
+            --accent-secondary: #8A7CFF;
+            --text-primary: #F8F8F2;
+            --text-secondary: #B2B2C6;
+            --card-bg: #2A2F45;
+            --card-hover: #32385A;
+            --success: #50C878;
+            --warning: #FFB347;
+            --error: #FF6B6B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--bg-secondary);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Banner Section */
+        .banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/images/banner-tools.jpg') center/cover no-repeat;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .banner h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Tools Grid */
+        .tools-section {
+            padding: 40px 0 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--accent-secondary);
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .tool-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+            background-color: var(--card-hover);
+        }
+
+        .tool-thumbnail {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .tool-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .tool-card:hover .tool-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .tool-content {
+            padding: 25px;
+        }
+
+        .tool-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .tool-content p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: var(--accent-primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        .download-btn:hover {
+            background-color: var(--accent-secondary);
+        }
+
+        /* Timer Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .timer-container {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .timer-container h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-secondary);
+        }
+
+        .timer-display {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--success);
+            margin: 20px 0;
+        }
+
+        .timer-message {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--accent-primary);
+            width: 0%;
+            transition: width 1s linear;
+        }
+
+        .download-real {
+            display: inline-block;
+            background-color: var(--success);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .download-real.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-secondary);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 35px;
+        }
+
+        .footer-logo h2 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .footer-about p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .footer-links h3, .footer-newsletter h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-secondary);
+        }
+
+        .footer-newsletter p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid #3E3E5F;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .newsletter-form button {
+            background-color: var(--accent-primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--accent-secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #3E3E5F;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            nav ul {
+                gap: 20px;
+            }
+            
+            .banner h2 {
+                font-size: 2.2rem;
+            }
+            
+            .banner p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                position: relative;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-secondary);
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner {
+                padding: 60px 0;
+            }
+            
+            .banner h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .tool-card {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            
+            .timer-container {
+                padding: 30px 20px;
+            }
+            
+            .timer-display {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(108, 92, 231, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--accent-primary);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .tool-placeholder {
+            background: linear-gradient(90deg, #2A2F45 0%, #32385A 50%, #2A2F45 100%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 12px;
+            height: 380px;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="assets/images/logo.png" alt="PK Grow Logo">
+                    <h1>PK Grow</h1>
+                </div>
+                <button class="mobile-menu-btn">☰</button>
+                <nav id="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tools.html" class="active">Tools</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner Section -->
+    <section class="banner">
+        <div class="container">
+            <h2>Explore Our Free Tools</h2>
+            <p>Boost your productivity with our carefully crafted tools. All utilities are free to use with optional premium features.</p>
+        </div>
+    </section>
+
+    <!-- Tools Grid Section -->
+    <section class="tools-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Tool Collection</h2>
+                <p>Discover tools designed to simplify your workflow and enhance your productivity</p>
+            </div>
+            
+            <div class="tools-grid" id="tools-container">
+                <!-- Tools will be dynamically loaded here -->
+                <div class="tool-placeholder"></div>
+                <div class="tool-placeholder"></div>
+                <div class="tool-placeholder"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timer Overlay -->
+    <div class="overlay" id="timer-overlay">
+        <div class="timer-container">
+            <h3>Preparing Your Download</h3>
+            <p class="timer-message">Thank you for supporting us! Your download will begin shortly.</p>
+            <div class="timer-display" id="countdown">10</div>
+            <div class="progress-bar">
+                <div class="progress" id="progress-bar"></div>
+            </div>
+            <a href="#" class="download-real" id="real-download">Download Now</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.png" alt="PK Grow Logo">
+                        <h2>PK Grow</h2>
+                    </div>
+                    <p>We create tools and resources to help developers and designers work more efficiently and creatively.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter to get updates on new tools and features.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 PK Grow. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase and Tools Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="assets/js/firebase-config.js"></script>
+    <script src="assets/js/tools.js"></script>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('main-nav').classList.toggle('active');
+        });
+
+        // Simulated tool data (in real scenario, this would come from Firebase)
+        const sampleTools = [
+            {
+                name: "SEO Analyzer Pro",
+                thumbnailUrl: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                description: "Comprehensive SEO analysis tool that provides detailed insights and recommendations for improving website visibility.",
+                downloadUrl: "https://example.com/downloads/seo-analyzer-pro.zip",
+                monetagUrl: "https://example.monetag.com/ads/seo-analyzer"
+            },
+            {
+                name: "Image Optimizer",
+                thumbnailUrl: "https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                description: "Optimize your images without losing quality. Supports all major formats and batch processing.",
+                downloadUrl: "https://example.com/downloads/image-optimizer.zip",
+                monetagUrl: "https://example.monetag.com/ads/image-optimizer"
+            },
+            {
+                name: "Code Formatter",
+                thumbnailUrl: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                description: "Automatically format your code to meet industry standards. Supports multiple programming languages.",
+                downloadUrl: "https://example.com/downloads/code-formatter.zip",
+                monetagUrl: "https://example.monetag.com/ads/code-formatter"
+            },
+            {
+                name: "PDF Converter Pro",
+                thumbnailUrl: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                description: "Convert PDFs to various formats and vice versa with high accuracy and preservation of formatting.",
+                downloadUrl: "https://example.com/downloads/pdf-converter-pro.zip",
+                monetagUrl: "https://example.monetag.com/ads/pdf-converter"
+            },
+            {
+                name: "Password Manager",
+                thumbnailUrl: "https://images.unsplash.com/photo-1595675024877-aa7afff3b7e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                description: "Securely store and manage all your passwords with military-grade encryption and cross-device sync.",
+                downloadUrl: "https://example.com/downloads/password-manager.zip",
+                monetagUrl: "https://example.monetag.com/ads/password-manager"
+            },
+            {
+                name: "Data Visualizer",
+                thumbnailUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                description: "Transform your data into beautiful and insightful visualizations with easy-to-use templates.",
+                downloadUrl: "https://example.com/downloads/data-visualizer.zip",
+                monetagUrl: "https://example.monetag.com/ads/data-visualizer"
+            }
+        ];
+
+        // Simulate loading from Firebase with a delay
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                // This would be replaced with actual Firebase code in tools.js
+                renderTools(sampleTools);
+            }, 1500);
+        });
+
+        // Function to render tools (simulating tools.js functionality)
+        function renderTools(tools) {
+            const toolsContainer = document.getElementById('tools-container');
+            toolsContainer.innerHTML = '';
+            
+            tools.forEach(tool => {
+                const toolElement = document.createElement('div');
+                toolElement.className = 'tool-card';
+                toolElement.innerHTML = `
+                    <div class="tool-thumbnail">
+                        <img src="${tool.thumbnailUrl}" alt="${tool.name}">
+                    </div>
+                    <div class="tool-content">
+                        <h3>${tool.name}</h3>
+                        <p>${tool.description}</p>
+                        <button class="download-btn" data-monetag="${tool.monetagUrl}" data-download="${tool.downloadUrl}">
+                            Download Now
+                        </button>
+                    </div>
+                `;
+                toolsContainer.appendChild(toolElement);
+            });
+            
+            // Add event listeners to download buttons
+            document.querySelectorAll('.download-btn').forEach(button => {
+                button.addEventListener('click', handleDownload);
+            });
+        }
+
+        // Download handler function
+        function handleDownload(event) {
+            const monetagUrl = event.target.getAttribute('data-monetag');
+            const downloadUrl = event.target.getAttribute('data-download');
+            
+            // Open monetag URL in new tab
+            window.open(monetagUrl, '_blank');
+            
+            // Show timer overlay
+            const overlay = document.getElementById('timer-overlay');
+            const realDownload = document.getElementById('real-download');
+            const countdown = document.getElementById('countdown');
+            const progressBar = document.getElementById('progress-bar');
+            
+            overlay.classList.add('active');
+            realDownload.href = downloadUrl;
+            
+            let timeLeft = 10;
+            const timer = setInterval(() => {
+                timeLeft--;
+                countdown.textContent = timeLeft;
+                progressBar.style.width = ((10 - timeLeft) * 10) + '%';
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    realDownload.classList.add('visible');
+                }
+            }, 1000);
+            
+            // Add event listener to close overlay when real download is clicked
+            realDownload.addEventListener('click', function() {
+                overlay.classList.remove('active');
+                realDownload.classList.remove('visible');
+            });
+        }
+    </script>
+</body>
+</html>

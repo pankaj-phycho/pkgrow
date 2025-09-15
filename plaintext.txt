@@ -1,0 +1,20 @@
+assets/
+├── css/
+│   └── style.css
+├── js/
+│   ├── firebase-config.js
+│   ├── index.js
+│   ├── tools.js
+│   ├── blogs.js
+│   └── contact.js
+├── images/
+│   ├── logo.png
+│   ├── banner-home.jpg
+│   ├── banner-tools.jpg
+│   ├── banner-blogs.jpg
+│   ├── banner-about.jpg
+│   ├── banner-contact.jpg
+│   └── placeholder-thumbnail.jpg
+└── fonts/
+    ├── Inter-Regular.woff2
+    └── Inter-Bold.woff2
